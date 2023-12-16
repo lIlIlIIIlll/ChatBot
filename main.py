@@ -113,31 +113,6 @@ while True:
     break
 
 while True:
-  contador = 0
-  envio = ""
-  for i, e in reversed(list(enumerate(historico))):
-    if historico[i]["role"] == "user":
-      contador += 1
-      envio += f"{nome}:{historico[i]['content']}, "
-    elif historico[i]["role"] == "assistant":
-      contador += 1
-      envio += f"{nomeGPT}:{historico[i]['content']}, "
-
-  if contador == 8:
-    envio += "Quero que você faça um resumo em bullet-points dos acontecimentos mais impactantes. Tente ser objetivo e escrever pouco, o resumo deve ser escrito de uma forma que você, ChatGPT, consiga entender facilmente o que se passa na cena. Não cite que eu solicitei esse resumo."
-    for i, e in reversed(list(enumerate(historico))):
-      if historico[i]["role"] == "user":
-        del historico[i]
-      elif historico[i]["role"] == "assistant":
-        del historico[i]
-    resumo = chat(envio, "gpt-3.5-turbo")
-    for i, e in reversed(list(enumerate(historico))):
-      if historico[i]["role"] == "user":
-        del historico[i]
-      elif historico[i]["role"] == "assistant":
-        del historico[i]
-    historico.append({"role": "assistant", "content": resumo})
-
   intup = input(f"\n{nome}: ")
   if intup == "cls":
     cls()
